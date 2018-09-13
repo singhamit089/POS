@@ -12,8 +12,11 @@ class HomeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        let service = APIService()
+        service.getDataWith { (result) in
+            print(result)
+        }
     }
 
     override func didReceiveMemoryWarning() {
