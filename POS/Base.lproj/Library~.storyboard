@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="ipad9_7" orientation="landscape">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Home View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="HomeViewController" customModule="POS" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="raD-hp-J4s" userLabel="LibraryContainerView">
+                                <rect key="frame" x="0.0" y="20" width="683" height="748"/>
+                                <connections>
+                                    <segue destination="uSF-Ku-aY5" kind="embed" id="4Yv-EW-BQu"/>
+                                </connections>
+                            </containerView>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xyd-HT-30h" userLabel="CartContainer View">
+                                <rect key="frame" x="683" y="20" width="341" height="748"/>
+                                <connections>
+                                    <segue destination="ddj-jm-N1j" kind="embed" id="M2Y-vr-l9a"/>
+                                </connections>
+                            </containerView>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="raD-hp-J4s" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="7XZ-fi-zbh"/>
+                            <constraint firstItem="raD-hp-J4s" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="8oW-Er-ubS"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="xyd-HT-30h" secondAttribute="trailing" id="KmL-iH-NMJ"/>
+                            <constraint firstItem="xyd-HT-30h" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="1:3" id="TA8-fT-ZuS"/>
+                            <constraint firstItem="raD-hp-J4s" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="ZgF-Gv-C09"/>
+                            <constraint firstItem="raD-hp-J4s" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="2:3" id="gcM-Ln-y12"/>
+                            <constraint firstItem="xyd-HT-30h" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="qb7-jn-4h6"/>
+                            <constraint firstItem="xyd-HT-30h" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="yAa-bA-zeI"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="64" y="105"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="6A5-ij-TZK">
+            <objects>
+                <viewController id="uSF-Ku-aY5" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="h6T-s4-24Y">
+                        <rect key="frame" x="0.0" y="0.0" width="683" height="748"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GkZ-UQ-Fcx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="64" y="848"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="ND1-9i-VPI">
+            <objects>
+                <viewController id="ddj-jm-N1j" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Wyq-9b-Ddi">
+                        <rect key="frame" x="0.0" y="0.0" width="341" height="748"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8Sa-Do-z9d" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="591" y="105"/>
+        </scene>
+    </scenes>
+</document>
