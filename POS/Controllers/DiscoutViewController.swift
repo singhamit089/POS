@@ -39,7 +39,7 @@ extension DiscoutViewController: UITableViewDelegate,UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "DiscountTableViewCell") as! DiscountTableViewCell
         
-        cell.ImageViewLogo.image = UIImage(named: "icon-percentage")
+        cell.ImageViewLogo.image = UIImage(named: self.dataSourceArray[indexPath.row].logo)
         cell.labelTitle.text = self.dataSourceArray[indexPath.row].title
         cell.labelDiscount.text = "\(self.dataSourceArray[indexPath.row].discount) %"
         
