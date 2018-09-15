@@ -7,6 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6D61457D214AF1840055D381 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D61457C214AF1840055D381 /* APIService.swift */; };
+		6D61458B214B02C60055D381 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D61458A214B02C60055D381 /* CoreDataManager.swift */; };
+		6D61458D214CFC210055D381 /* LibraryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D61458C214CFC210055D381 /* LibraryModel.swift */; };
+		6D614597214D0F9C0055D381 /* DiscountModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D614596214D0F9C0055D381 /* DiscountModel.swift */; };
+		6D61459E214D1BCC0055D381 /* LibraryDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D61459D214D1BCC0055D381 /* LibraryDetailTableViewCell.swift */; };
+		6D6145A0214D2AC40055D381 /* DiscoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D61459F214D2AC40055D381 /* DiscoutViewController.swift */; };
+		6D6145A2214D2ACD0055D381 /* ItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D6145A1214D2ACD0055D381 /* ItemViewController.swift */; };
+		6D6145A5214D2AEB0055D381 /* ItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D6145A3214D2AEB0055D381 /* ItemTableViewCell.swift */; };
+		6D6145A6214D2AEB0055D381 /* ItemTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6D6145A4214D2AEB0055D381 /* ItemTableViewCell.xib */; };
+		6D6145A9214D2AF80055D381 /* DiscountTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D6145A7214D2AF80055D381 /* DiscountTableViewCell.swift */; };
+		6D6145AA214D2AF80055D381 /* DiscountTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6D6145A8214D2AF80055D381 /* DiscountTableViewCell.xib */; };
 		6DD31096214A8BAF00168A0E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DD31095214A8BAF00168A0E /* AppDelegate.swift */; };
 		6DD3109B214A8BAF00168A0E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6DD31099214A8BAF00168A0E /* Main.storyboard */; };
 		6DD3109E214A8BAF00168A0E /* POS.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6DD3109C214A8BAF00168A0E /* POS.xcdatamodeld */; };
@@ -31,6 +42,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6D61457C214AF1840055D381 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
+		6D61458A214B02C60055D381 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		6D61458C214CFC210055D381 /* LibraryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryModel.swift; sourceTree = "<group>"; };
+		6D614596214D0F9C0055D381 /* DiscountModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscountModel.swift; sourceTree = "<group>"; };
+		6D61459D214D1BCC0055D381 /* LibraryDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryDetailTableViewCell.swift; sourceTree = "<group>"; };
+		6D61459F214D2AC40055D381 /* DiscoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoutViewController.swift; sourceTree = "<group>"; };
+		6D6145A1214D2ACD0055D381 /* ItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemViewController.swift; sourceTree = "<group>"; };
+		6D6145A3214D2AEB0055D381 /* ItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemTableViewCell.swift; sourceTree = "<group>"; };
+		6D6145A4214D2AEB0055D381 /* ItemTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ItemTableViewCell.xib; sourceTree = "<group>"; };
+		6D6145A7214D2AF80055D381 /* DiscountTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscountTableViewCell.swift; sourceTree = "<group>"; };
+		6D6145A8214D2AF80055D381 /* DiscountTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DiscountTableViewCell.xib; sourceTree = "<group>"; };
 		6DD31092214A8BAF00168A0E /* POS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = POS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6DD31095214A8BAF00168A0E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6DD3109A214A8BAF00168A0E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -66,6 +88,43 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6D61457F214AF1A70055D381 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				6D61457C214AF1840055D381 /* APIService.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		6D61458E214CFC270055D381 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				6D61458C214CFC210055D381 /* LibraryModel.swift */,
+				6D614596214D0F9C0055D381 /* DiscountModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		6D61458F214CFCD80055D381 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				6D61458A214B02C60055D381 /* CoreDataManager.swift */,
+			);
+			path = Manager;
+			sourceTree = "<group>";
+		};
+		6D61459C214D1B8A0055D381 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				6D61459D214D1BCC0055D381 /* LibraryDetailTableViewCell.swift */,
+				6D6145A3214D2AEB0055D381 /* ItemTableViewCell.swift */,
+				6D6145A4214D2AEB0055D381 /* ItemTableViewCell.xib */,
+				6D6145A7214D2AF80055D381 /* DiscountTableViewCell.swift */,
+				6D6145A8214D2AF80055D381 /* DiscountTableViewCell.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		6DD31089214A8BAF00168A0E = {
 			isa = PBXGroup;
 			children = (
@@ -88,7 +147,11 @@
 			isa = PBXGroup;
 			children = (
 				6DD31095214A8BAF00168A0E /* AppDelegate.swift */,
-				6DD310C6214ACEC500168A0E /* ViewControllers */,
+				6D61458E214CFC270055D381 /* Model */,
+				6D61459C214D1B8A0055D381 /* View */,
+				6DD310C6214ACEC500168A0E /* Controllers */,
+				6D61457F214AF1A70055D381 /* Network */,
+				6D61458F214CFCD80055D381 /* Manager */,
 				6DD310BF214AC94200168A0E /* Resources */,
 				6DD310A4214A8BB000168A0E /* Info.plist */,
 				6DD3109C214A8BAF00168A0E /* POS.xcdatamodeld */,
@@ -117,14 +180,16 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
-		6DD310C6214ACEC500168A0E /* ViewControllers */ = {
+		6DD310C6214ACEC500168A0E /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
 				6DD310B8214AA52800168A0E /* HomeViewController.swift */,
 				6DD310C7214ACEE500168A0E /* LibraryTableViewController.swift */,
 				6DD310C9214ACF0300168A0E /* CartViewController.swift */,
+				6D61459F214D2AC40055D381 /* DiscoutViewController.swift */,
+				6D6145A1214D2ACD0055D381 /* ItemViewController.swift */,
 			);
-			path = ViewControllers;
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -211,7 +276,9 @@
 				6DD310A3214A8BB000168A0E /* LaunchScreen.storyboard in Resources */,
 				6DD310A0214A8BB000168A0E /* Assets.xcassets in Resources */,
 				6DD310C4214AC9CC00168A0E /* Library.storyboard in Resources */,
+				6D6145AA214D2AF80055D381 /* DiscountTableViewCell.xib in Resources */,
 				6DD310C5214AC9CC00168A0E /* Cart.storyboard in Resources */,
+				6D6145A6214D2AEB0055D381 /* ItemTableViewCell.xib in Resources */,
 				6DD3109B214A8BAF00168A0E /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -230,10 +297,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6D61458B214B02C60055D381 /* CoreDataManager.swift in Sources */,
+				6D614597214D0F9C0055D381 /* DiscountModel.swift in Sources */,
 				6DD3109E214A8BAF00168A0E /* POS.xcdatamodeld in Sources */,
 				6DD31096214A8BAF00168A0E /* AppDelegate.swift in Sources */,
+				6D61458D214CFC210055D381 /* LibraryModel.swift in Sources */,
+				6D6145A2214D2ACD0055D381 /* ItemViewController.swift in Sources */,
+				6D6145A5214D2AEB0055D381 /* ItemTableViewCell.swift in Sources */,
 				6DD310CA214ACF0300168A0E /* CartViewController.swift in Sources */,
 				6DD310C8214ACEE500168A0E /* LibraryTableViewController.swift in Sources */,
+				6D61459E214D1BCC0055D381 /* LibraryDetailTableViewCell.swift in Sources */,
+				6D61457D214AF1840055D381 /* APIService.swift in Sources */,
+				6D6145A0214D2AC40055D381 /* DiscoutViewController.swift in Sources */,
+				6D6145A9214D2AF80055D381 /* DiscountTableViewCell.swift in Sources */,
 				6DD310B9214AA52800168A0E /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

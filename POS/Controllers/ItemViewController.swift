@@ -1,14 +1,14 @@
 //
-//  HomeViewController.swift
+//  ItemViewController.swift
 //  POS
 //
-//  Created by Amit  Singh on 9/13/18.
+//  Created by Amit  Singh on 9/15/18.
 //  Copyright © 2018 singhamit089. All rights reserved.
 //
 
 import UIKit
 
-class HomeViewController: UIViewController {
+class ItemViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
