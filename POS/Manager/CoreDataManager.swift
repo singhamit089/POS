@@ -9,9 +9,9 @@
 import Foundation
 import CoreData
 
-class CoreDataStack {
+class CoreDataManager {
     
-    static let sharedInstance = CoreDataStack()
+    static let sharedInstance = CoreDataManager()
     
     private init() {}
     
