@@ -19,9 +19,9 @@ extension Item {
 
     @NSManaged public var albumId: Int32
     @NSManaged public var id: Int32
+    @NSManaged public var price: Double
+    @NSManaged public var thumbnailUrl: String?
     @NSManaged public var title: String?
     @NSManaged public var url: String?
-    @NSManaged public var thumbnailUrl: String?
-    @NSManaged public var price: Float
 
 }

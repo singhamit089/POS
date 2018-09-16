@@ -17,13 +17,13 @@ class DBStorageManagerTest: XCTestCase {
     
     //MARK: mock in-memory persistant store
     lazy var managedObjectModel: NSManagedObjectModel = {
-        let managedObjectModel = NSManagedObjectModel.mergedModel(from: [Bundle(for: type(of: self))] )!
+        let managedObjectModel = NSManagedObjectModel.mergedModel(from: nil )!
         return managedObjectModel
     }()
     
     lazy var mockPersistantContainer: NSPersistentContainer = {
         
-        let container = NSPersistentContainer(name: "PersistentItemList", managedObjectModel: self.managedObjectModel)
+        let container = NSPersistentContainer(name: "POS", managedObjectModel: self.managedObjectModel)
         let description = NSPersistentStoreDescription()
         description.type = NSInMemoryStoreType
         description.shouldAddStoreAsynchronously = false // Make it simpler in test env
@@ -56,6 +56,7 @@ class DBStorageManagerTest: XCTestCase {
         
         let newItem = ["albumId": 1,
                        "id": 6,
+                       "price": 100.0,
                        "title": "accusamus ea aliquid et amet sequi nemo",
                        "url": "https://via.placeholder.com/600/56a8c2",
                        "thumbnailUrl": "https://via.placeholder.com/150/56a8c2" ] as [String : Any]

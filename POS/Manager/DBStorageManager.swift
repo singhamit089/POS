@@ -30,12 +30,12 @@ class DBStorageManager {
         
         guard let item:Item = NSEntityDescription.insertNewObject(forEntityName: "Item", into: backgroundContext) as? Item else {return nil}
         
-        item.albumId = dictionary["albumId"] as! Int32
-        item.id =  dictionary["id"] as! Int32
+        item.albumId = Int32(dictionary["albumId"] as! Int)
+        item.id =  Int32(dictionary["id"] as! Int)
+        item.price = dictionary["price"] as! Double
         item.title = dictionary["title"] as? String
         item.url = dictionary["url"] as? String
         item.thumbnailUrl = dictionary["thumbnailUrl"] as? String
-        
         
         return item
     }
