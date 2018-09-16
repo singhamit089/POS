@@ -17,6 +17,10 @@ class HomeViewController: UIViewController {
         
         add(loadingViewController)
         
+        DataProvider.sharedInstance.getProductList { (dataArray) in
+            self.loadingViewController.remove()
+        }
+        
 //        let service = APIService()
 //        service.getDataWith { (result) in
 //            switch result {

@@ -25,6 +25,17 @@ class DBStorageManager {
     lazy var backgroundContext: NSManagedObjectContext = {
         return self.persistentContainer.newBackgroundContext()
     }()
+    
+    lazy var fetchedhResultController: NSFetchedResultsController<NSFetchRequestResult> = {
+        
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: String(describing: Item.self))
+        
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "id", ascending: true)]
+        
+        let frc = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: persistentContainer.viewContext, sectionNameKeyPath: nil, cacheName: nil)
+        
+        return frc
+    }()
 
     func insertItems(with dictionary:[String:Any]) -> Item? {
         
