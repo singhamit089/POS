@@ -32,10 +32,20 @@ protocol URLSessionProtocol {
     
     typealias DataTaskResult = (Data?, URLResponse?, Error?) -> Void
     
-    func dataTask(with:URLRequest, completionHandler: DataTaskResult) -> URLSessionProtocol
+    func dataTask(with request:URLRequest, completionHandler: DataTaskResult) -> URLSessionDataTaskProtocol
 }
 
-extension URLSessionProtocol {
-    func resume() {
+protocol URLSessionDataTaskProtocol {
+    func resume()
+}
+
+extension URLSession: URLSessionProtocol {
+    
+    func dataTask(with request: URLRequest, completionHandler: DataTaskResult) -> URLSessionDataTaskProtocol {
+        return dataTask(with: request, completionHandler: completionHandler)
     }
+}
+
+extension URLSessionDataTask: URLSessionDataTaskProtocol{
+    
 }
