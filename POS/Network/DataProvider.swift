@@ -26,7 +26,7 @@ class DataProvider {
     /**
      Makes API Call to get the list of all Items
      */
-    func getProductList(completion: @escaping (Result<[[String:Any]]>)->Void) {
+    func getProductList(completion: @escaping (Result<Bool>)->Void) {
         
         guard let url = URL(string: "https://jsonplaceholder.typicode.com/photos") else {
             fatalError("URL Can't be nil")
@@ -40,8 +40,23 @@ class DataProvider {
             do {
                 if let jsonArray = try JSONSerialization.jsonObject(with: data, options: []) as? [[String: AnyObject]] {
                     
+                    _ = jsonArray.map({ objectDict -> ([String : AnyObject]) in
+                        let item = self.storageManager.insertItems(with: objectDict)
+                        let price = Double(arc4random_uniform(100) * UInt32(objectDict["id"] as! Int))
+                        item?.price = price
+                        return objectDict
+                    })
+                    
+                    self.storageManager.save()
+                    
                     DispatchQueue.main.async {
-                        completion(.Success(jsonArray))
+                        
+                        /* ****
+                         TODO : To be removed later
+                         Printing the path for sqlite file only for Debug purpose
+                         */
+                        CoreDataManager.sharedInstance.applicationDocumentsDirectory()
+                        completion(.Success(true))
                     }
                 }
             } catch let error {

@@ -17,26 +17,18 @@ class HomeViewController: UIViewController {
         
         add(loadingViewController)
         
-        DataProvider.sharedInstance.getProductList { (dataArray) in
-            self.loadingViewController.remove()
+        DataProvider.sharedInstance.getProductList { (result) in
+            switch result {
+            case .Success(_):
+                self.loadingViewController.remove()
+            case .Error(let error):
+                print("API Error")
+                self.loadingViewController.remove()
+                
+                let errorViewController = ErrorViewController(error: error)
+                self.add(errorViewController)
+            }
         }
-        
-//        let service = APIService()
-//        service.getDataWith { (result) in
-//            switch result {
-//            case .Success(let data):
-//                self.loadingViewController.remove()
-//                print("API Success")
-//            case .Error(let error):
-//                self.loadingViewController.remove()
-//                let errorViewController = ErrorViewController(error: error)
-//
-//
-//
-//                self.add(errorViewController)
-//                print("API Error")
-//            }
-//        }
     }
 
     override func didReceiveMemoryWarning() {

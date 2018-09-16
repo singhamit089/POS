@@ -43,10 +43,15 @@ class DBStorageManager {
         
         item.albumId = Int32(dictionary["albumId"] as! Int)
         item.id =  Int32(dictionary["id"] as! Int)
-        item.price = dictionary["price"] as! Double
         item.title = dictionary["title"] as? String
         item.url = dictionary["url"] as? String
         item.thumbnailUrl = dictionary["thumbnailUrl"] as? String
+        
+        if let price = dictionary["price"]{
+            item.price = price as! Double
+        }else{
+            item.price = Double(0)
+        }
         
         return item
     }

@@ -60,10 +60,10 @@
             </objects>
             <point key="canvasLocation" x="304" y="1678"/>
         </scene>
-        <!--View Controller-->
+        <!--Item View Controller-->
         <scene sceneID="7JR-TZ-Xsj">
             <objects>
-                <viewController id="VFT-Sg-C5S" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ItemViewController" id="VFT-Sg-C5S" customClass="ItemViewController" customModule="POS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="RZY-Ey-61b">
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
