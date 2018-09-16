@@ -28,14 +28,14 @@ struct DiscountModel {
     
     public static func getDiscountDataSource()->[DiscountModel] {
         
-        var array:[DiscountModel] = Array(repeating: DiscountModel(), count: 5)
+        var someArray = Array<DiscountModel>()
         
-        array[0] = DiscountModel(title: "Discount A", discount: 0)
-        array[1] = DiscountModel(title: "Discount B", discount: 10)
-        array[2] = DiscountModel(title: "Discount C", discount: 35.5)
-        array[3] = DiscountModel(title: "Discount D", discount: 50)
-        array[4] = DiscountModel(title: "Discount E", discount: 100)
+        someArray.append(DiscountModel(title: "Discount A", discount: 0))
+        someArray.append(DiscountModel(title: "Discount B", discount: 10))
+        someArray.append(DiscountModel(title: "Discount C", discount: 35.5))
+        someArray.append(DiscountModel(title: "Discount D", discount: 50))
+        someArray.append(DiscountModel(title: "Discount E", discount: 100))
         
-        return array
+        return someArray
     }
 }
