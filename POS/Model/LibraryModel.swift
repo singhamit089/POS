@@ -26,12 +26,12 @@ struct LibraryModel {
     
     public static func getLibraryDataSource()->[LibraryModel] {
         
-        var array = Array<LibraryModel>.init(repeating: LibraryModel(), count: 2)
+        var someArray = Array<LibraryModel>()
         
-        array[0] = LibraryModel(title: "All Discounts", logo: "icon-percentage")
-        array[1] = LibraryModel(title: "All Items", logo: "icon-bulleted-list")
+        someArray.append(LibraryModel(title: "All Discounts", logo: "icon-percentage"))
+        someArray.append(LibraryModel(title: "All Items", logo: "icon-bulleted-list"))
         
-        return array
+        return someArray
     }
     
 }

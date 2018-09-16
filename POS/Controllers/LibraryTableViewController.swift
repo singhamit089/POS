@@ -50,7 +50,9 @@ class LibraryTableViewController: UITableViewController {
             self.navigationController?.pushViewController(viewControlelr, animated: true)
             
         case 1:
-            print("1 Selected")
+            
+            let viewControlelr = self.storyboard?.instantiateViewController(withIdentifier: "ItemViewController") as! ItemViewController
+            self.navigationController?.pushViewController(viewControlelr, animated: true)
         default:
             print("Default Selected")
         }

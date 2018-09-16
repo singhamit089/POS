@@ -10,6 +10,11 @@ import UIKit
 
 class ItemTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var imageItem: UIImageView!
+    @IBOutlet weak var labelItemName: UILabel!
+    @IBOutlet weak var labelItemPrice: UILabel!
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -18,7 +23,11 @@ class ItemTableViewCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
-        // Configure the view for the selected state
     }
-    
+
+    func setItemCell(item:Item) {
+        imageItem.image = UIImage(named: "logo")
+        labelItemName.text = item.title
+        labelItemPrice.text = "$ \(item.price)"
+    }
 }
