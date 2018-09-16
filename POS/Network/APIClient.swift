@@ -28,21 +28,20 @@ class APIClient {
     }
 }
 
-protocol URLSessionProtocol {
-    
-    typealias DataTaskResult = (Data?, URLResponse?, Error?) -> Void
-    
-    func dataTask(with request:URLRequest, completionHandler: DataTaskResult) -> URLSessionDataTaskProtocol
-}
+typealias DataTaskResult = (Data?, URLResponse?, Error?) -> Void
 
+protocol URLSessionProtocol {
+    func dataTask(with request: URLRequest, completionHandler: @escaping DataTaskResult) -> URLSessionDataTaskProtocol
+}
 protocol URLSessionDataTaskProtocol {
     func resume()
 }
 
 extension URLSession: URLSessionProtocol {
-    
-    func dataTask(with request: URLRequest, completionHandler: DataTaskResult) -> URLSessionDataTaskProtocol {
-        return dataTask(with: request, completionHandler: completionHandler)
+    func dataTask(with request: URLRequest, completionHandler: @escaping DataTaskResult) -> URLSessionDataTaskProtocol {
+        let task:URLSessionDataTask = dataTask(with: request, completionHandler: {
+            (data:Data?, response:URLResponse?, error:Error?) in completionHandler(data,response,error) }) as URLSessionDataTask
+        return task
     }
 }
 
