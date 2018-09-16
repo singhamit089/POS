@@ -42,7 +42,8 @@ class DataProvider {
                     
                     _ = jsonArray.map({ objectDict -> ([String : AnyObject]) in
                         let item = self.storageManager.insertItems(with: objectDict)
-                        let price = Double(arc4random_uniform(100) * UInt32(objectDict["id"] as! Int))
+                        let randomValue = 10 + arc4random() % (99 - 10);
+                        let price = Double(randomValue * UInt32(objectDict["id"] as! Int))
                         item?.price = price
                         return objectDict
                     })

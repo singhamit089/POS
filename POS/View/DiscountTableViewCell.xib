@@ -55,7 +55,7 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="ImageViewLogo" destination="IBS-QT-UMI" id="Pkt-mP-tfZ"/>
+                <outlet property="imageViewLogo" destination="IBS-QT-UMI" id="so3-NJ-IzG"/>
                 <outlet property="labelDiscount" destination="A7H-X5-Zfd" id="rSR-VZ-WQO"/>
                 <outlet property="labelTitle" destination="hPb-WV-0t0" id="BcZ-av-fQp"/>
             </connections>

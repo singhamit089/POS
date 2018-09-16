@@ -10,7 +10,7 @@ import UIKit
 
 class DiscountTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var ImageViewLogo: UIImageView!
+    @IBOutlet weak var imageViewLogo: UIImageView!
     @IBOutlet weak var labelTitle: UILabel!
     @IBOutlet weak var labelDiscount: UILabel!
     
@@ -24,6 +24,12 @@ class DiscountTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+    }
+    
+    func setCell(with discout:DiscountModel) {
+        imageViewLogo.image = UIImage(named: discout.logo)
+        labelTitle.text = discout.title
+        labelDiscount.text = "\(discout.discount) %"
     }
     
 }
