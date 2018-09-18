@@ -9,13 +9,12 @@
 import UIKit
 
 class LibraryTableViewController: UITableViewController {
-
     let dataSourceArray = LibraryModel.getLibraryDataSource()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.title = "All Items"
+
+        title = "All Items"
     }
 
     override func didReceiveMemoryWarning() {
@@ -25,34 +24,31 @@ class LibraryTableViewController: UITableViewController {
 
     // MARK: - Table view data source
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
+    override func tableView(_: UITableView, numberOfRowsInSection _: Int) -> Int {
         return dataSourceArray.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         let cell = tableView.dequeueReusableCell(withIdentifier: "LibraryTableViewCellReuseIdentifier", for: indexPath)
 
         cell.textLabel?.text = dataSourceArray[indexPath.row].title
         cell.imageView?.image = UIImage(named: dataSourceArray[indexPath.row].logo)
         cell.accessoryType = .disclosureIndicator
-        
+
         return cell
     }
-    
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+
+    override func tableView(_: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath.row {
         case 0:
-            
-            let viewControlelr = self.storyboard?.instantiateViewController(withIdentifier: "DiscoutViewController") as! DiscoutViewController
-            self.navigationController?.pushViewController(viewControlelr, animated: true)
-            
+
+            let viewControlelr = storyboard?.instantiateViewController(withIdentifier: "DiscoutViewController") as! DiscoutViewController
+            navigationController?.pushViewController(viewControlelr, animated: true)
+
         case 1:
-            
-            let viewControlelr = self.storyboard?.instantiateViewController(withIdentifier: "ItemViewController") as! ItemViewController
-            self.navigationController?.pushViewController(viewControlelr, animated: true)
+
+            let viewControlelr = storyboard?.instantiateViewController(withIdentifier: "ItemViewController") as! ItemViewController
+            navigationController?.pushViewController(viewControlelr, animated: true)
         default:
             print("Default Selected")
         }

@@ -9,34 +9,28 @@
 import UIKit
 
 class AddItemViewController: UIViewController {
+    @IBOutlet var labelItemName: UILabel!
+    @IBOutlet var labelItemPrice: UILabel!
+    @IBOutlet var labelQuantity: UILabel!
+    @IBOutlet var stepper: UIStepper!
 
-    @IBOutlet weak var labelItemName: UILabel!
-    @IBOutlet weak var labelItemPrice: UILabel!
-    @IBOutlet weak var labelQuantity: UILabel!
-    @IBOutlet weak var stepper: UIStepper!
-    
-    @IBOutlet weak var collectionView: UICollectionView!
-    
-    
+    @IBOutlet var collectionView: UICollectionView!
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.collectionView.register(DiscountCollectionViewCell.self, forCellWithReuseIdentifier: "DiscountCollectionViewCell")
+
+        collectionView.register(DiscountCollectionViewCell.self, forCellWithReuseIdentifier: "DiscountCollectionViewCell")
     }
-   
-    @IBAction func cancleButtonAction(_ sender: Any) {
-        self.dismiss(animated: false, completion: nil)
+
+    @IBAction func cancleButtonAction(_: Any) {
+        dismiss(animated: false, completion: nil)
     }
-    
-    @IBAction func saveButonAction(_ sender: Any) {
-    }
-    
-    @IBAction func stepperAction(_ sender: Any) {
-    }
-    
-    @IBAction func stepperValueChangeAction(_ sender: Any) {
-    }
-    
+
+    @IBAction func saveButonAction(_: Any) {}
+
+    @IBAction func stepperAction(_: Any) {}
+
+    @IBAction func stepperValueChangeAction(_: Any) {}
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -45,15 +39,13 @@ class AddItemViewController: UIViewController {
 }
 
 extension AddItemViewController: UICollectionViewDelegate, UICollectionViewDataSource {
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_: UICollectionView, numberOfItemsInSection _: Int) -> Int {
         return 4
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DiscountCollectionViewCell", for: indexPath) as! DiscountCollectionViewCell
-        
+
         return cell
     }
 }

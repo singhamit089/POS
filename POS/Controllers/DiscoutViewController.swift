@@ -9,15 +9,14 @@
 import UIKit
 
 class DiscoutViewController: UIViewController {
+    @IBOutlet var tableViewDiscount: UITableView!
 
-    @IBOutlet weak var tableViewDiscount: UITableView!
-    
     var dataSourceArray = DiscountModel.getDiscountDataSource()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.tableViewDiscount.register(UINib(nibName: "DiscountTableViewCell", bundle: nil), forCellReuseIdentifier: "DiscountTableViewCell")
+
+        tableViewDiscount.register(UINib(nibName: "DiscountTableViewCell", bundle: nil), forCellReuseIdentifier: "DiscountTableViewCell")
     }
 
     override func didReceiveMemoryWarning() {
@@ -26,16 +25,15 @@ class DiscoutViewController: UIViewController {
     }
 }
 
-extension DiscoutViewController: UITableViewDelegate,UITableViewDataSource {
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+extension DiscoutViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_: UITableView, heightForRowAt _: IndexPath) -> CGFloat {
         return 60.0
     }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+
+    func tableView(_: UITableView, numberOfRowsInSection _: Int) -> Int {
         return dataSourceArray.count
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "DiscountTableViewCell") as! DiscountTableViewCell
         cell.setCell(with: dataSourceArray[indexPath.row])

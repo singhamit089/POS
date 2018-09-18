@@ -9,12 +9,11 @@
 import UIKit
 
 class LibraryDetailTableViewCell: UITableViewCell {
-    @IBOutlet weak var imageViewLogo: UIImageView!
-    @IBOutlet weak var labelTitle: UILabel!
-    
-    @IBOutlet weak var labelValue: UILabel!
-    
-    
+    @IBOutlet var imageViewLogo: UIImageView!
+    @IBOutlet var labelTitle: UILabel!
+
+    @IBOutlet var labelValue: UILabel!
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -25,5 +24,4 @@ class LibraryDetailTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-
 }

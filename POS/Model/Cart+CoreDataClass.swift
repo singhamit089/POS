@@ -7,10 +7,8 @@
 //
 //
 
-import Foundation
 import CoreData
+import Foundation
 
 @objc(Cart)
-public class Cart: NSManagedObject {
-
-}
+public class Cart: NSManagedObject {}

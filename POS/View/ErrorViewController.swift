@@ -9,22 +9,21 @@
 import UIKit
 
 class ErrorViewController: UIViewController {
-
     var reloadHandler: () -> Void = {}
-    let error:Error
-    
-    init(error:Error) {
+    let error: Error
+
+    init(error: Error) {
         self.error = error
         super.init(nibName: nil, bundle: nil)
     }
-    
-    required init?(coder aDecoder: NSCoder) {
+
+    required init?(coder _: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         DispatchQueue.main.async {
             self.showAlertWith(title: "Error", message: self.error.localizedDescription)
         }
@@ -33,18 +32,16 @@ class ErrorViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-    
+
     func showAlertWith(title: String, message: String, style: UIAlertControllerStyle = .alert) {
-        
         let alertController = UIAlertController(title: title, message: message, preferredStyle: style)
-        
-        let action = UIAlertAction(title: "Retry", style: .default) { (action) in
+
+        let action = UIAlertAction(title: "Retry", style: .default) { _ in
             self.reloadHandler()
         }
-        
+
         alertController.addAction(action)
-        
-        self.present(alertController, animated: true, completion: nil)
+
+        present(alertController, animated: true, completion: nil)
     }
 }
-

@@ -9,19 +9,18 @@
 import UIKit
 
 class ItemViewController: UIViewController {
-
-    @IBOutlet weak var tableViewItem: UITableView!
+    @IBOutlet var tableViewItem: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         do {
             try DataProvider.sharedInstance.storageManager.fetchedhResultController.performFetch()
             print("COUNT FETCHED FIRST: \(String(describing: DataProvider.sharedInstance.storageManager.fetchedhResultController.sections?[0].numberOfObjects))")
-        } catch let error  {
+        } catch let error {
             print("ERROR: \(error)")
         }
-        
-        self.tableViewItem.register(UINib(nibName: "ItemTableViewCell", bundle: nil), forCellReuseIdentifier: "ItemTableViewCell")
+
+        tableViewItem.register(UINib(nibName: "ItemTableViewCell", bundle: nil), forCellReuseIdentifier: "ItemTableViewCell")
     }
 
     override func didReceiveMemoryWarning() {
@@ -30,33 +29,32 @@ class ItemViewController: UIViewController {
     }
 }
 
-extension ItemViewController: UITableViewDelegate,UITableViewDataSource {
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+extension ItemViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_: UITableView, heightForRowAt _: IndexPath) -> CGFloat {
         return 100.0
     }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if let count = DataProvider.sharedInstance.storageManager.fetchedhResultController.fetchedObjects?.count{
+
+    func tableView(_: UITableView, numberOfRowsInSection _: Int) -> Int {
+        if let count = DataProvider.sharedInstance.storageManager.fetchedhResultController.fetchedObjects?.count {
             return count
         }
         return 0
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ItemTableViewCell") as! ItemTableViewCell
-        
+
         if let item = DataProvider.sharedInstance.storageManager.fetchedhResultController.object(at: indexPath) as? Item {
             cell.setItemCell(item: item)
         }
-        
+
         return cell
     }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let addItemViewControlelr = self.storyboard?.instantiateViewController(withIdentifier: "AddItemViewController") as! AddItemViewController
+
+    func tableView(_: UITableView, didSelectRowAt _: IndexPath) {
+        let addItemViewControlelr = storyboard?.instantiateViewController(withIdentifier: "AddItemViewController") as! AddItemViewController
         addItemViewControlelr.view.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
         addItemViewControlelr.modalPresentationStyle = .overFullScreen
-        self.navigationController?.present(addItemViewControlelr, animated: false, completion: nil)
+        navigationController?.present(addItemViewControlelr, animated: false, completion: nil)
     }
 }

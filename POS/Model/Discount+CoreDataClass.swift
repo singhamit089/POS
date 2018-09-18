@@ -7,10 +7,8 @@
 //
 //
 
-import Foundation
 import CoreData
+import Foundation
 
 @objc(Discount)
-public class Discount: NSManagedObject {
-
-}
+public class Discount: NSManagedObject {}
