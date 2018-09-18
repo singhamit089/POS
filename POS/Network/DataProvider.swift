@@ -39,16 +39,19 @@ class DataProvider {
             
             do {
                 if let jsonArray = try JSONSerialization.jsonObject(with: data, options: []) as? [[String: AnyObject]] {
+                
+                    self.storageManager.deleteAllObjectsForEnity(entity: Item.self)
+                    self.storageManager.save()
                     
-                    _ = jsonArray.map({ objectDict -> ([String : AnyObject]) in
-                        let item = self.storageManager.insertItems(with: objectDict)
+                    let updatedArray = jsonArray.map({ objectDict -> ([String : AnyObject]) in
+                        var dict = objectDict
                         let randomValue = 10 + arc4random() % (99 - 10);
                         let price = Double(randomValue * UInt32(objectDict["id"] as! Int))
-                        item?.price = price
-                        return objectDict
+                        dict["price"] = price as AnyObject
+                        return dict
                     })
                     
-                    self.storageManager.save()
+                    self.storageManager.insertitemArrayInBatches(with: updatedArray)
                     
                     DispatchQueue.main.async {
                         
