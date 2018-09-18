@@ -51,10 +51,11 @@ extension ItemViewController: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
 
-    func tableView(_: UITableView, didSelectRowAt _: IndexPath) {
+    func tableView(_: UITableView, didSelectRowAt indexPath: IndexPath) {
         let addItemViewControlelr = storyboard?.instantiateViewController(withIdentifier: "AddItemViewController") as! AddItemViewController
         addItemViewControlelr.view.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
         addItemViewControlelr.modalPresentationStyle = .overFullScreen
+        addItemViewControlelr.cart = DataProvider.sharedInstance.storageManager.getCart(with: (DataProvider.sharedInstance.storageManager.fetchedhResultController.object(at: indexPath) as! Item))
         navigationController?.present(addItemViewControlelr, animated: false, completion: nil)
     }
 }

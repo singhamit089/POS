@@ -9,7 +9,15 @@
 import UIKit
 
 class DiscountCollectionViewCell: UICollectionViewCell {
-
+    
+    @IBOutlet weak var labelDiscount: UILabel!
+    
+    @IBOutlet weak var `switch`: UISwitch!
+    
+    @IBAction func switchTapAction(_ sender: Any) {
+        
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

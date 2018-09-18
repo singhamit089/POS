@@ -21,8 +21,8 @@ class DBStorageManager {
         self.init(container: CoreDataManager.sharedInstance.persistentContainer)
     }
 
-    lazy var backgroundContext: NSManagedObjectContext = {
-        self.persistentContainer.newBackgroundContext()
+    lazy var mainContext: NSManagedObjectContext = {
+        self.persistentContainer.viewContext
     }()
 
     lazy var fetchedhResultController: NSFetchedResultsController<NSFetchRequestResult> = {
@@ -36,7 +36,7 @@ class DBStorageManager {
     }()
 
     func insertItems(with dictionary: [String: Any]) -> Item? {
-        guard let item: Item = NSEntityDescription.insertNewObject(forEntityName: "Item", into: backgroundContext) as? Item else { return nil }
+        guard let item: Item = NSEntityDescription.insertNewObject(forEntityName: "Item", into: mainContext) as? Item else { return nil }
 
         item.albumId = Int32(dictionary["albumId"] as! Int)
         item.id = Int32(dictionary["id"] as! Int)
@@ -60,31 +60,25 @@ class DBStorageManager {
     }
 
     func remove(objectID: NSManagedObjectID) {
-        let obj = backgroundContext.object(with: objectID)
-        backgroundContext.delete(obj)
+        let obj = mainContext.object(with: objectID)
+        mainContext.delete(obj)
     }
 
     func save() {
-        if backgroundContext.hasChanges {
-            do {
-                try backgroundContext.save()
-            } catch {
-                print("Save error \(error)")
-            }
-        }
+        CoreDataManager.sharedInstance.saveContext()
     }
 
     func insertitemArrayInBatches(with array: Array<[String: Any]>) {
-        let managedObjectContext = NSManagedObjectContext(concurrencyType: NSManagedObjectContextConcurrencyType.privateQueueConcurrencyType)
+        let backgroundContext = NSManagedObjectContext(concurrencyType: NSManagedObjectContextConcurrencyType.privateQueueConcurrencyType)
+        
+        backgroundContext.parent = mainContext
 
-        managedObjectContext.persistentStoreCoordinator = persistentContainer.persistentStoreCoordinator
-
-        managedObjectContext.perform { // runs asynchronously
+        backgroundContext.perform { // runs asynchronously
             autoreleasepool {
                 array.chunked(by: 1000).map({ subArray in
                     subArray.map({ (dictionary) -> Item in
 
-                        let item: Item = NSEntityDescription.insertNewObject(forEntityName: "Item", into: managedObjectContext) as! Item
+                        let item: Item = NSEntityDescription.insertNewObject(forEntityName: "Item", into: backgroundContext) as! Item
 
                         item.albumId = Int32(dictionary["albumId"] as! Int)
                         item.id = Int32(dictionary["id"] as! Int)
@@ -99,12 +93,12 @@ class DBStorageManager {
 
             // only save once per batch insert
             do {
-                try managedObjectContext.save()
+                try backgroundContext.save()
             } catch {
                 print(error)
             }
 
-            managedObjectContext.reset()
+            backgroundContext.reset()
         }
     }
 
@@ -114,17 +108,21 @@ class DBStorageManager {
         let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
 
         do {
-            try persistentContainer.persistentStoreCoordinator.execute(deleteRequest, with: backgroundContext)
+            try persistentContainer.persistentStoreCoordinator.execute(deleteRequest, with: mainContext)
         } catch let error as NSError {
             print(error.localizedDescription)
         }
     }
-}
-
-extension Array {
-    func chunked(by chunkSize: Int) -> [[Element]] {
-        return stride(from: 0, to: count, by: chunkSize).map {
-            Array(self[$0 ..< Swift.min($0 + chunkSize, self.count)])
-        }
+    
+    func getCart(with item:Item) -> Cart? {
+        
+        guard let cart: Cart = NSEntityDescription.insertNewObject(forEntityName: "Cart", into: mainContext) as? Cart else { return nil }
+        
+        cart.items = item
+        cart.discounts = nil
+        cart.quantity = 1
+        cart.price = item.price
+        
+        return cart
     }
 }

@@ -14,12 +14,16 @@ class CartViewController: UIViewController {
 
         title = "Shopping Cart"
 
-        // Do any additional setup after loading the view.
+        NotificationCenter.default.addObserver(self, selector: #selector(cartUpdated), name: NSNotification.Name(NotificationName.cartUpdated.rawValue), object: nil)
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    @objc func cartUpdated()  {
+        print("Cart Updated!... fetching data!")
     }
 
     /*
