@@ -8,4 +8,11 @@
 
 import UIKit
 
-class DiscountCollectionViewCell: UICollectionViewCell {}
+class DiscountCollectionViewCell: UICollectionViewCell {
+
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        // Initialization code
+    }
+
+}
