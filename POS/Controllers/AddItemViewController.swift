@@ -10,42 +10,50 @@ import UIKit
 
 class AddItemViewController: UIViewController {
 
+    @IBOutlet weak var labelItemName: UILabel!
+    @IBOutlet weak var labelItemPrice: UILabel!
+    @IBOutlet weak var labelQuantity: UILabel!
+    @IBOutlet weak var stepper: UIStepper!
+    
+    @IBOutlet weak var collectionView: UICollectionView!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        self.title =  "Add Item"
         
-        let rightButtonItem = UIBarButtonItem.init(
-            title: "Save",
-            style: .done,
-            target: self,
-            action: Selector(("rightButtonAction:"))
-        )
-        
-        let leftButtonItem = UIBarButtonItem.init(
-            title: "Cancle",
-            style: .done,
-            target: self,
-            action: Selector(("leftButtonAction:"))
-        )
-        
-        self.navigationItem.rightBarButtonItem = rightButtonItem
-        self.navigationItem.leftBarButtonItem = leftButtonItem
-        
-        // Do any additional setup after loading the view.
+        self.collectionView.register(DiscountCollectionViewCell.self, forCellWithReuseIdentifier: "DiscountCollectionViewCell")
+    }
+   
+    @IBAction func cancleButtonAction(_ sender: Any) {
+        self.dismiss(animated: false, completion: nil)
     }
     
-    @objc func rightButtonAction(sender: UIBarButtonItem){
-        print("Right Button Pressed")
+    @IBAction func saveButonAction(_ sender: Any) {
     }
     
-    @objc func leftButtonAction(sender: UIBarButtonItem){
-        print("Left Button Pressed")
-        self.remove()
+    @IBAction func stepperAction(_ sender: Any) {
     }
+    
+    @IBAction func stepperValueChangeAction(_ sender: Any) {
+    }
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+}
+
+extension AddItemViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 4
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DiscountCollectionViewCell", for: indexPath) as! DiscountCollectionViewCell
+        
+        return cell
     }
 }
