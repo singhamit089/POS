@@ -7,12 +7,10 @@
 //
 //
 
-import Foundation
 import CoreData
-
+import Foundation
 
 extension Item {
-
     @nonobjc public class func fetchRequest() -> NSFetchRequest<Item> {
         return NSFetchRequest<Item>(entityName: "Item")
     }
@@ -23,5 +21,4 @@ extension Item {
     @NSManaged public var thumbnailUrl: String?
     @NSManaged public var title: String?
     @NSManaged public var url: String?
-
 }

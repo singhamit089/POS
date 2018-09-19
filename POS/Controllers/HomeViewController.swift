@@ -9,22 +9,24 @@
 import UIKit
 
 class HomeViewController: UIViewController {
-
     let loadingViewController = LoadingViewController()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         add(loadingViewController)
         
-        DataProvider.sharedInstance.getProductList { (result) in
+        DataProvider.sharedInstance.firstLaunchInitilizations()
+
+        // We can Also call API just once, and from next time on just load the data from CoreData
+        DataProvider.sharedInstance.getProductList { result in
             switch result {
-            case .Success(_):
+            case .Success:
                 self.loadingViewController.remove()
-            case .Error(let error):
+            case let .Error(error):
                 print("API Error")
                 self.loadingViewController.remove()
-                
+
                 let errorViewController = ErrorViewController(error: error)
                 self.add(errorViewController)
             }
@@ -35,9 +37,6 @@ class HomeViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
-    func loadProducts() {
-        
-    }
 
+    func loadProducts() {}
 }

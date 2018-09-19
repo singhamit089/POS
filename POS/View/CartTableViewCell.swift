@@ -1,19 +1,21 @@
 //
-//  LibraryDetailTableViewCell.swift
+//  CartTableViewCell.swift
 //  POS
 //
-//  Created by Amit  Singh on 9/15/18.
+//  Created by Amit  Singh on 9/19/18.
 //  Copyright © 2018 singhamit089. All rights reserved.
 //
 
 import UIKit
 
-class LibraryDetailTableViewCell: UITableViewCell {
-    @IBOutlet var imageViewLogo: UIImageView!
-    @IBOutlet var labelTitle: UILabel!
+class CartTableViewCell: UITableViewCell {
 
-    @IBOutlet var labelValue: UILabel!
-
+    @IBOutlet weak var labelItem: UILabel!
+    
+    @IBOutlet weak var labelQuantity: UILabel!
+    @IBOutlet weak var labelPrice: UILabel!
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -24,4 +26,5 @@ class LibraryDetailTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+    
 }

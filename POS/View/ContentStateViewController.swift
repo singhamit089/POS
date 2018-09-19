@@ -9,10 +9,9 @@
 import UIKit
 
 class ContentStateViewController: UIViewController {
-
     private var state: State?
     private var shownViewController: UIViewController?
-    
+
     func transition(to newState: State) {
         shownViewController?.remove()
         let vc = viewController(for: newState)
@@ -20,10 +19,10 @@ class ContentStateViewController: UIViewController {
         shownViewController = vc
         state = newState
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         if state == nil {
             transition(to: .loading)
         }
@@ -48,9 +47,9 @@ private extension ContentStateViewController {
         switch state {
         case .loading:
             return LoadingViewController()
-        case .failed(let error):
+        case let .failed(error):
             return ErrorViewController(error: error)
-        case .render(let viewController):
+        case let .render(viewController):
             return viewController
         }
     }
