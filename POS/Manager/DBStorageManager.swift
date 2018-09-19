@@ -172,6 +172,8 @@ class DBStorageManager {
                 let firstCartObject =  cartArray.first
                 firstCartObject?.quantity = totalQty
                 
+                firstCartObject?.price = (firstCartObject?.items?.price)! * Double(totalQty)
+                
                 cartArray.remove(at: 0)
                 
                 for cart in cartArray {
