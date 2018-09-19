@@ -18,6 +18,8 @@ class CartViewController: UIViewController {
     
     var cartArray:[Cart]!
     
+    var footerView:CartFooterTableViewCell!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -26,6 +28,11 @@ class CartViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(cartUpdated), name: NSNotification.Name(IdentifyingKeys.cartUpdated.rawValue), object: nil)
         
         tableViewCart.register(UINib(nibName: "CartTableViewCell", bundle: nil), forCellReuseIdentifier: "CartTableViewCell")
+        tableViewCart.register(UINib(nibName: "CartFooterTableViewCell", bundle: nil), forCellReuseIdentifier: "CartFooterTableViewCell")
+        
+        footerView = tableViewCart.dequeueReusableCell(withIdentifier: "CartFooterTableViewCell") as! CartFooterTableViewCell
+        
+        tableViewCart.tableFooterView = footerView.contentView
         
         self.cartUpdated()
     }
@@ -46,10 +53,19 @@ class CartViewController: UIViewController {
             self.buttonClearData.isHidden = true
         }
         
-        let totalCharge = cartArray.reduce(into: Double(0)) { (total, cart) in
-            total += cart.price
+        let subTotal = self.cartArray.reduce(into: Double(0)) { (subTotal, cart) in
+            subTotal += cart.price
         }
-        let titleText = totalCharge > 0 ? "Charge $\(totalCharge)" : "Charge"
+        footerView.labelSubtotal.text = "\(subTotal)"
+        
+        let discountTotal = self.cartArray.reduce(into: Double(0)) { (discountTotal, cart) in
+            let discountedAmount = cart.price * ((cart.discounts?.value ?? 0)/100)
+            discountTotal += discountedAmount
+        }
+        footerView.labelTotalDiscount.text = "\(discountTotal)"
+        
+        let totalPayableAmount = subTotal - discountTotal
+        let titleText = totalPayableAmount > 0 ? "Charge $\(totalPayableAmount)" : "Charge"
         self.buttonTotalCharge.titleLabel?.numberOfLines = 0
         self.buttonTotalCharge.setTitle(titleText, for: .normal)
     }
