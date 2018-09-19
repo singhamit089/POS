@@ -58,7 +58,19 @@ class DBStorageManager {
         let results = try? persistentContainer.viewContext.fetch(request)
         return results ?? [Item]()
     }
+    
+    func fetchAllDiscount() -> [Discount] {
+        let request: NSFetchRequest<Discount> = Discount.fetchRequest()
+        let results = try? persistentContainer.viewContext.fetch(request)
+        return results ?? [Discount]()
+    }
 
+    func fetchAllCartItem() -> [Cart] {
+        let request: NSFetchRequest<Cart> = Cart.fetchRequest()
+        let results = try? persistentContainer.viewContext.fetch(request)
+        return results ?? [Cart]()
+    }
+    
     func remove(objectID: NSManagedObjectID) {
         let obj = mainContext.object(with: objectID)
         mainContext.delete(obj)
@@ -124,5 +136,17 @@ class DBStorageManager {
         cart.price = item.price
         
         return cart
+    }
+    
+    func insertDiscounts(with array:Array<DiscountModel>) {
+        
+        _ = array.map { (discountModel) in
+            let discountObject: Discount = NSEntityDescription.insertNewObject(forEntityName: "Discount", into: mainContext) as! Discount
+            discountObject.name = discountModel.title
+            discountObject.value = discountModel.discount
+            discountObject.id = Int32(discountModel.id)
+        }
+        
+        save()
     }
 }

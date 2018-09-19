@@ -16,6 +16,7 @@ extension Array {
     }
 }
 
-enum NotificationName:String{
+enum IdentifyingKeys:String{
     case cartUpdated
+    case firstLaunch
 }

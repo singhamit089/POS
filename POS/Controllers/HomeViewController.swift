@@ -15,7 +15,10 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
 
         add(loadingViewController)
+        
+        DataProvider.sharedInstance.firstLaunchInitilizations()
 
+        // We can Also call API just once, and from next time on just load the data from CoreData
         DataProvider.sharedInstance.getProductList { result in
             switch result {
             case .Success:
