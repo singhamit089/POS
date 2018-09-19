@@ -165,13 +165,14 @@ class DBStorageManager {
                 
                 var cartArray = results as! [Cart]
                 
-                let totalQty =  results.reduce(into: Int32(0)) { (qty, Cart) in
-                    qty += cart.quantity
+                var totalQty = Int32(0)
+                
+                for cart in cartArray {
+                    totalQty += cart.quantity
                 }
                 
                 let firstCartObject =  cartArray.first
                 firstCartObject?.quantity = totalQty
-                
                 firstCartObject?.price = (firstCartObject?.items?.price)! * Double(totalQty)
                 
                 cartArray.remove(at: 0)
