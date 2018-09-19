@@ -17,7 +17,7 @@ extension Array {
     }
 }
 
-enum IdentifyingKeys:String{
+enum IdentifyingKeys: String {
     case cartUpdated
     case firstLaunch
 }
@@ -25,19 +25,17 @@ enum IdentifyingKeys:String{
 let imageCache = NSCache<NSString, UIImage>()
 
 extension UIImageView {
-    
     func imageFromServerURL(_ URLString: String, placeHolder: UIImage?) {
-        
-        self.image = nil
+        image = nil
         if let cachedImage = imageCache.object(forKey: NSString(string: URLString)) {
-            self.image = cachedImage
+            image = cachedImage
             return
         }
-        
+
         if let url = URL(string: URLString) {
-            URLSession.shared.dataTask(with: url, completionHandler: { (data, response, error) in
-                
-                //print("RESPONSE FROM API: \(response)")
+            URLSession.shared.dataTask(with: url, completionHandler: { data, _, error in
+
+                // print("RESPONSE FROM API: \(response)")
                 if error != nil {
                     print("ERROR LOADING IMAGES FROM URL: \(error)")
                     DispatchQueue.main.async {

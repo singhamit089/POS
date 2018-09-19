@@ -7,12 +7,10 @@
 //
 //
 
-import Foundation
 import CoreData
-
+import Foundation
 
 extension Cart {
-
     @nonobjc public class func fetchRequest() -> NSFetchRequest<Cart> {
         return NSFetchRequest<Cart>(entityName: "Cart")
     }
@@ -21,5 +19,4 @@ extension Cart {
     @NSManaged public var price: Double
     @NSManaged public var items: Item?
     @NSManaged public var discounts: Discount?
-
 }

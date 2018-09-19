@@ -7,12 +7,10 @@
 //
 //
 
-import Foundation
 import CoreData
-
+import Foundation
 
 extension Discount {
-
     @nonobjc public class func fetchRequest() -> NSFetchRequest<Discount> {
         return NSFetchRequest<Discount>(entityName: "Discount")
     }
@@ -20,5 +18,4 @@ extension Discount {
     @NSManaged public var name: String?
     @NSManaged public var value: Double
     @NSManaged public var id: Int32
-
 }

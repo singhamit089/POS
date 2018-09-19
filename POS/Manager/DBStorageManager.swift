@@ -58,7 +58,7 @@ class DBStorageManager {
         let results = try? persistentContainer.viewContext.fetch(request)
         return results ?? [Item]()
     }
-    
+
     func fetchAllDiscount() -> [Discount] {
         let request: NSFetchRequest<Discount> = Discount.fetchRequest()
         let results = try? persistentContainer.viewContext.fetch(request)
@@ -70,7 +70,7 @@ class DBStorageManager {
         let results = try? persistentContainer.viewContext.fetch(request)
         return results ?? [Cart]()
     }
-    
+
     func remove(objectID: NSManagedObjectID) {
         let obj = mainContext.object(with: objectID)
         mainContext.delete(obj)
@@ -82,7 +82,7 @@ class DBStorageManager {
 
     func insertitemArrayInBatches(with array: Array<[String: Any]>) {
         let backgroundContext = NSManagedObjectContext(concurrencyType: NSManagedObjectContextConcurrencyType.privateQueueConcurrencyType)
-        
+
         backgroundContext.parent = mainContext
 
         backgroundContext.perform { // runs asynchronously
@@ -125,28 +125,75 @@ class DBStorageManager {
             print(error.localizedDescription)
         }
     }
-    
-    func getCart(with item:Item) -> Cart? {
-        
+
+    func getCart(with item: Item) -> Cart? {
         guard let cart: Cart = NSEntityDescription.insertNewObject(forEntityName: "Cart", into: mainContext) as? Cart else { return nil }
-        
+
         cart.items = item
         cart.discounts = nil
         cart.quantity = 1
         cart.price = item.price
-        
+
         return cart
     }
     
-    func insertDiscounts(with array:Array<DiscountModel>) {
+    func insertCart(with cart:Cart) {
         
-        _ = array.map { (discountModel) in
+        var predicateArray = Array<NSPredicate>()
+        
+        if let itemID = cart.items?.id {
+            let predicateItem = NSPredicate(format: "items.id == %d", itemID)
+            predicateArray.append(predicateItem)
+        }
+        
+        if let discountID = cart.discounts?.id {
+            let predicateDiscount = NSPredicate(format: "discounts.id == %d", discountID)
+            predicateArray.append(predicateDiscount)
+        }
+        
+         let predicateCompound = NSCompoundPredicate.init(type: .and, subpredicates: predicateArray)
+        
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: String(describing: Cart.self))
+        fetchRequest.predicate = predicateCompound
+        //fetchRequest.sortDescriptors = [] //optionally you can specify the order in which entities should ordered after fetch finishes
+    
+        do {
+            let results = try mainContext.fetch(fetchRequest)
+            if results.count == 1 {
+                save()
+            }else {
+                
+                var cartArray = results as! [Cart]
+                
+                let totalQty =  results.reduce(into: Int32(0)) { (qty, Cart) in
+                    qty += cart.quantity
+                }
+                
+                let firstCartObject =  cartArray.first
+                firstCartObject?.quantity = totalQty
+                
+                cartArray.remove(at: 0)
+                
+                for cart in cartArray {
+                   remove(objectID: cart.objectID)
+                }
+                
+                save()
+            }
+        } catch {
+            let nserror = error as NSError
+            fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+        }
+    }
+
+    func insertDiscounts(with array: Array<DiscountModel>) {
+        _ = array.map { discountModel in
             let discountObject: Discount = NSEntityDescription.insertNewObject(forEntityName: "Discount", into: mainContext) as! Discount
             discountObject.name = discountModel.title
             discountObject.value = discountModel.discount
             discountObject.id = Int32(discountModel.id)
         }
-        
+
         save()
     }
 }

@@ -9,19 +9,15 @@
 import UIKit
 
 class DiscountCollectionViewCell: UICollectionViewCell {
-    
-    @IBOutlet weak var labelDiscount: UILabel!
-    
-    @IBOutlet weak var `switch`: UISwitch!
-    
-    @IBAction func switchTapAction(_ sender: Any) {
-        
-    }
-    
+    @IBOutlet var labelDiscount: UILabel!
+
+    @IBOutlet var `switch`: UISwitch!
+
+    @IBAction func switchTapAction(_: Any) {}
+
     override func awakeFromNib() {
         super.awakeFromNib()
-        
-        self.switch.isUserInteractionEnabled = false
-    }
 
+        `switch`.isUserInteractionEnabled = false
+    }
 }

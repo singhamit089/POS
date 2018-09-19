@@ -9,11 +9,9 @@
 import UIKit
 
 class CartFooterTableViewCell: UITableViewCell {
+    @IBOutlet var labelSubtotal: UILabel!
+    @IBOutlet var labelTotalDiscount: UILabel!
 
-    @IBOutlet weak var labelSubtotal: UILabel!
-    @IBOutlet weak var labelTotalDiscount: UILabel!
-    
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -24,5 +22,4 @@ class CartFooterTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-    
 }
