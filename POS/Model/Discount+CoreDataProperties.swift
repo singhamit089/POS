@@ -19,5 +19,6 @@ extension Discount {
 
     @NSManaged public var name: String?
     @NSManaged public var value: Double
+    @NSManaged public var id: Int32
 
 }
