@@ -23,7 +23,7 @@ class ItemTableViewCell: UITableViewCell {
     }
 
     func setItemCell(item: Item) {
-        imageItem.image = UIImage(named: "logo")
+        imageItem.imageFromServerURL(item.thumbnailUrl!, placeHolder: UIImage(named: "logo"))
         labelItemName.text = item.title
         labelItemPrice.text = "$ \(item.price)"
     }
